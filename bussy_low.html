@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <title>TMNmedia BUSSY-TRADER</title>
+        
+  
+
+  <style>
+    body, html{
+      padding:0;
+      margin:0 auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      align-items: center;
+    }
+        
+    .bodyd{
+        text-align: center;
+        margin-top: 10px;
+        
+    }
+    .report{
+      
+      text-align: center;
+      margin-top: 10px;
+      border: 2px solid black;
+      text-size-adjust: auto;
+      display: flex;
+      flex-direction: column-reverse;
+      flex-wrap: wrap;
+      align-content: center;
+    }
+    .city {
+        background-color: rgb(255, 253, 253);
+        color: rgb(6, 6, 6);
+        border: 2px solid black;
+        margin: 20px;
+        padding: 10px;
+        box-sizing: content-box;
+        text-size-adjust: auto;
+        font-weight: bold;
+        text-transform: uppercase;
+        
+      }
+    header{
+      margin:0 auto;
+      max-width:1200px;
+      display:flex;
+      justify-content:space-between;
+      align-items: center;
+      height: 80px;
+    }
+    nav{
+      display:flex;
+      align-items: center;
+    }
+    nav .menu-dropdowns{
+      display:flex;
+    }
+    nav .menu-dropdowns a{
+      margin-right:15px;
+      font-family: Helvetica,Arial,sans-serif;
+      color:#3d4853;
+      text-decoration: none;
+    }
+    nav .dropdown-content{
+      display:none;
+    }
+    nav .right-buttons{
+      margin-left:10px;
+      align-items: center;
+      vertical-align: middle;
+      align-self: center;
+    }
+    nav .right-buttons a{
+      margin-right:10px;    
+      align-items: center;
+      vertical-align: middle;
+      align-self: center;
+    }
+    header nav .remove-padding{
+      margin-right:0;
+    }
+    .dropdown:hover .dropdown-content{
+      display:block;
+      position:absolute;
+    }
+
+    .logo svg{
+      width:165px;
+    }
+    .top-btn{
+      padding:10px 15px;
+      font-size:15px;
+      text-transform: uppercase;
+      font-family: Helvetica,Arial,sans-serif;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      border-radius: 4px;
+      transition: 0.4s;
+    }
+    .white-btn{
+      border-width:2px;
+      background-color: #d17104;
+      color:#f9fafb;
+      -webkit-box-shadow: inset 0 0 0 0 #bdcad8, 5px 5px 25px 0 #f1f4f8;
+      box-shadow: inset 0 0 0 0 #bdcad8, 5px 5px 25px 0 #f1f4f8;
+      border:2px solid #fff;
+    }
+    .green-btn{
+      background-color: #35CF94;
+      color:#fff;
+      border:2px solid #35CF94;
+    }
+
+    .white-btn:hover{
+      border-color:#bdbdbd;
+    }
+    .green-btn:hover{
+      border-bottom-color:#29a978;
+    }
+
+    *{
+            /* Change your font family */
+            font-family: sans-serif;
+        }
+
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            align-content: center;
+            text-align: center;
+        }
+
+        .content-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .content-table th,
+        .content-table td {
+            padding: 12px 15px;
+        }
+
+        .content-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .content-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .content-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+        .content-table tbody tr.active-row {
+            font-weight: bold;
+            color: #009879;
+        }
+  </style>
+</head>
+
+<body  >
+  <script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/json2csv"></script>
+    
+<header class="city">
+  
+  <nav style="text-align: center;align-items: center;">
+    
+    <div class="bodyd" >
+      
+      <a href="bussy_low.html" class="top-btn green-btn remove-padding">TMNmedia BUSSY-TRADER</a> <br><h4>LIVE ON TMNmedia BUSSY -TRADER PAGE</h4>
+    </div>
+  </nav>
+</header>
+
+<section class="city"  >
+    
+        <div>
+            <h1 style="text-align: center;">ACCOUNT DETAILS</h1>
+            <ul style="background-color:silver;align-content: center;  margin: 5px auto; " autocomplete="on"><br>
+              <li >Deriv Token: <input id="Token" name="Password" type="password" placeholder="Deriv Token " required/> <button id="authen" style="background-color:orange;color:black;">Confrim Your TOKEN! </button>
+                <li>Stake: <input id="stake" type="number" placeholder="Stake Amount" required/></li><br>
+                
+                <li>Select Index:  
+                         
+                  <select name="Index Choice" id="Index_vol" class= "white-btn" required>
+                      <option value="R_10" >Volatility 10</option>
+                      <option value="R_25" >Volatility 25</option>
+                      <option value="R_50" >Volatility 50</option>
+                      <option value="R_100" >Volatility 100</option>
+                  </select>
+          
+               </li><br>
+               <li>Martingale: <input id="martin" type="number" placeholder="SINGLE Level-eg- 1x "/> </li><br> 
+               <li>Barrier Offset: <input id="barrier" type="number" placeholder="Barrier like 0.15 for R_10"/> </li><br> 
+               <li>Product_bot_key: <input id="bot_key" type="text" placeholder="Code that allowsBot to Work" required/></li><br>
+               <li>Connect Your Telegram for Reporting: <input id="chat_id" type="number" placeholder="Telegram Chat ID"/></li><br>
+              <button id="button1" onclick="test()" onclick="onloadedinfo()" class= "white-btn top-btn" style="background-color:orange;color:black;"><h5>LOCK Your Details!</h5></button>     
+              </ul>
+           </div>
+   
+
+  
+</section> <br>
+
+   
+<li style="text-align: center;">Continue Daily TRADING:  
+                         
+    <select name="Daily_trading" id="trade_always" style="background-color: #e1f338; color: rgb(1, 1, 1);" required>
+        <option value="ON" selected style="background-color: #e1f338; color: green;">ON DAILY</option>
+        <option value="OFF" > OFF </option>
+        
+    </select>
+
+ </li><br>
+
+
+<div class="right-buttons" style="align-content: center;margin-inline:65px;padding: 10px 15px; font-size: 15px;text-align: center;">
+  <button id='start' type="button" onclick="startprocess(),logr()" style="background-color:#B4009E;color:#ffffff;align-content: center;padding: 10px 15px;font-size: 15px;" >
+    <h4 id='start'>-CLICK TO START TRADING NOW--</h4>
+</button >
+</div>
+
+<section style="text-align: center;">
+  
+    
+  <h5 style="text-align: center;" id='datupdte'>==========================</h5><h3 id='tick-time'>---</h3><h5>==========================</h5>
+  <h3 id='spot_tick'>---</h3> SIGNAL <p style="font-weight: bold; font-size:16px;">COUNTER</p> 
+  <h3 id='lastick'>---</h3> TICK  <h4 id='movinglevel'>---</h4> AVG
+  <h4 id='lowlevel'>---</h4> LOW <h4 id='highlevel'>---</h4> HIGH
+  <section style="text-align: center;">
+ 
+    <div >
+      
+      <table border= '2' style="
+        display: inline-block;
+        text-decoration: none;
+        text-size-adjust: auto;
+        font-size: medium;
+        background-color: rgb(255, 253, 253);
+        color: rgb(6, 6, 6);
+        margin: 5px auto;
+        padding: 1px;
+        box-sizing: content-box;
+        text-size-adjust: auto;
+        text-align: center;">
+        
+        <tr>
+          <h4 style="text-align: center;">REPORT - TRADE RESULT BELOW</h4>
+      
+            <th> BALANCE $. </th>
+            <th> TARGET-PROFIT </th>
+            <th> TRADE-WON </th>
+            <th> TRADE-LOST  </th>
+            <th> PROFIT-$.   </th>
+            <th> WIN-RATE % </th>
+        </tr>
+        <tr>
+            <td id="acctbal">---</td>
+            <td id="target">---</td>
+            <td id="tradewon">---</td>
+            <td id="tradelost">---</td>
+            <td id="profitvalue">---</td>
+            <td id="winratio">---</td>
+        </tr>
+        
+  
+    </table>
+    </div>
+  </section>
+  
+    
+  <section style="text-align: center; align-content: center;">
+    
+    <h4 style="text-align: center;">DAILY SUMMARY REPORT - TRADE RESULT BELOW</h4>
+    <div>
+      <table id="demoTable" class="content-table" style="text-align: center; align-content: center; padding: 10px;">
+        <thead id="Tableh"></thead>
+        <tbody id="Tableb"></tbody>
+    </table>
+    </div>
+    
+  </section>
+
+  
+
+</section> <br><br><br>
+ 
+ 
+  
+
+<div style="margin-bottom:0; align-content: center;padding-inline: 10px;">
+    TMNmedia Trading Bot 2024..... STATUS <button id= "checkOnline" value="" style="background-color: #888;"></button>
+  </div><br>
+
+    <script>
+        if (Notification.permission === "granted") {
+            //showNotification();
+            //alert("Notifications Permitted")
+            console.log('Notifications Permitted =')
+        } else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then(permission =>{
+                
+                if (permission === "granted") {
+                    console.log('Notification =', permission)
+                    //showNotification();
+                }
+                
+            });
+        }           
+
+        var ifConnected = window.navigator.onLine;
+        if (ifConnected) {
+        document.getElementById("checkOnline").innerHTML = "Online";
+        document.getElementById("checkOnline").style.color = "yellow";
+        document.getElementById("checkOnline").style.backgroundColor = "green";
+        } else {
+        document.getElementById("checkOnline").innerHTML = "Offline";
+        document.getElementById("checkOnline").style.color = "Black";
+        document.getElementById("checkOnline").style.backgroundColor = "red";
+        }
+        const dailytrading = document.getElementById("trade_always").value;
+        if (dailytrading === "ON") {
+            console.log("DAILY TRADING IS ON=>",dailytrading)
+            
+        } else{
+            console.log("DAILY TRADING IS OFF=>",dailytrading)
+        }
+
+    setInterval(function(){ 
+
+    var ifConnected = window.navigator.onLine;
+    if (ifConnected) {
+        document.getElementById("checkOnline").innerHTML = "Online";
+        document.getElementById("checkOnline").style.color = "yellow";
+        document.getElementById("checkOnline").style.backgroundColor = "green";
+        } else {
+        document.getElementById("checkOnline").innerHTML = "Offline";
+        document.getElementById("checkOnline").style.color = "Black";
+        document.getElementById("checkOnline").style.backgroundColor = "red";
+        }
+
+        const dailytrading = document.getElementById("trade_always").value;
+
+        
+
+        const date = new Date()
+        const hours = date.getHours()
+        const minutes = date.getMinutes()
+        const seconds = date.getSeconds()
+        const timeNow2 = `${hours}:${minutes}:${seconds}`
+    
+        if (dailytrading === "ON" && timeNow2 === '0:5:0') {
+        // relaunch detail lock
+        console.log('RESET DETAILS FOR TRADING-BALANCE UPDATE',resetbtn()) 
+            setTimeout(() => {
+                    
+                console.log('RELOAD DETAILS FOR TRADING-BALANCE UPDATE',testdaily())
+                //relaunch Signal startup
+                console.log('RELOAD SIGNAL FOR FEEDER',logr())
+                // relaunch trading start up
+                //startprocess()
+                console.log('START DAILY TRADER PROPER',startprocessdaily())
+            }, 10000);
+        
+        return console.log('RESET DAY TARGET FOR FRESH START')
+        
+        }
+                    
+        
+
+    }, 1000);
+
+    </script>
+
+<script src="bussy_fivmin.js"></script>
+<script src="bussy_signal.js"></script>
+<script src="main.js"></script>
+
+</body>
+
+<footer>
+    
+
+     
+</footer>
+</html>
