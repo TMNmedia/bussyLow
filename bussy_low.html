@@ -366,7 +366,7 @@
         const seconds = date.getSeconds()
         const timeNow2 = `${hours}:${minutes}:${seconds}`
     
-        if (dailytrading === "ON" && timeNow2 === '0:5:0') {
+        if (dailytrading === "ON" && hours == 0 && minutes == 5 && seconds == 5) {
         // relaunch detail lock
         console.log('RESET DETAILS FOR TRADING-BALANCE UPDATE',resetbtn()) 
             setTimeout(() => {
